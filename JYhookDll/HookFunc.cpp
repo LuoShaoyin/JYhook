@@ -154,7 +154,7 @@ bool HookInit()
 	for (DWORD i = 0; i < MAXN_PHOTO; i++)
 	{
 		ZeroMemory(PhotoPath, sizeof(PhotoPath));
-		wsprintf(PhotoPath, _T("%s%s%d%s"), wcd, _T("\\GamerDll\\CamouflageScreenshot\\"), i, _T(".bmp"));
+		wsprintf(PhotoPath, _T("%s%s%d%s"), wcd, _T("\\JYhookDll\\CamouflageScreenshot\\"), i, _T(".bmp"));
 		lplCamouflageImage[i].Load(PhotoPath);
 		hCamouflageImage[i] = lplCamouflageImage[i].Detach();
 	}

@@ -1,5 +1,5 @@
 ﻿
-// GamerDlg.h: 头文件
+// JYhookDlg.h: 头文件
 //
 
 #pragma once
@@ -9,16 +9,16 @@
 
 #define MAX_PAGE 4
 
-// CGamerDlg 对话框
-class CGamerDlg : public CDialogEx
+// CJYhookDlg 对话框
+class CJYhookDlg : public CDialogEx
 {
 // 构造
 public:
-	CGamerDlg(CWnd* pParent = nullptr);	// 标准构造函数
+	CJYhookDlg(CWnd* pParent = nullptr);	// 标准构造函数
 
 // 对话框数据
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_GAMER_DIALOG };
+	enum { IDD = IDD_JYhook_DIALOG };
 #endif
 
 	protected:

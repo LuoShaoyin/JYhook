@@ -1,40 +1,40 @@
 ﻿
-// Gamer.cpp: 定义应用程序的类行为。
+// JYhook.cpp: 定义应用程序的类行为。
 //
 
 #include "pch.h"
 #include "framework.h"
-#include "Gamer.h"
+#include "JYhook.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 
-// CGamerApp
+// CJYhookApp
 
-BEGIN_MESSAGE_MAP(CGamerApp, CWinApp)
+BEGIN_MESSAGE_MAP(CJYhookApp, CWinApp)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
-// CGamerApp 构造
+// CJYhookApp 构造
 
-CGamerApp::CGamerApp()
+CJYhookApp::CJYhookApp()
 {
 	// TODO: 在此处添加构造代码，
 	// 将所有重要的初始化放置在 InitInstance 中
 }
 
 
-// 唯一的 CGamerApp 对象
+// 唯一的 CJYhookApp 对象
 
-CGamerApp theApp;
+CJYhookApp theApp;
 
 
-// CGamerApp 初始化
+// CJYhookApp 初始化
 
-BOOL CGamerApp::InitInstance()
+BOOL CJYhookApp::InitInstance()
 {
 	// 如果一个运行在 Windows XP 上的应用程序清单指定要
 	// 使用 ComCtl32.dll 版本 6 或更高版本来启用可视化方式，
@@ -65,8 +65,8 @@ BOOL CGamerApp::InitInstance()
 	// 更改用于存储设置的注册表项
 	// TODO: 应适当修改该字符串，
 	// 例如修改为公司或组织名
-	SetRegistryKey(_T("Gamer"));
-	CGamerDlg dlg;
+	SetRegistryKey(_T("JYhook"));
+	CJYhookDlg dlg;
 	MainDlg = &dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();

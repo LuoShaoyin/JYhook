@@ -1,8 +1,8 @@
 ﻿//{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ 生成的包含文件。
-// 供 Gamer.rc 使用
+// 供 JYhook.rc 使用
 //
-#define IDD_GAMER_DIALOG                102
+#define IDD_JYhook_DIALOG                102
 #define IDR_MAINFRAME                   128
 #define IDD_HOME_DIALOG                 130
 #define IDD_SETTING_DIALOG              131

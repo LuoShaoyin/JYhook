@@ -3,8 +3,8 @@
 //
 
 
-#include "Gamer.h"
-#include "GamerDlg.h"
+#include "JYhook.h"
+#include "JYhookDlg.h"
 #include "HomeDlg.h"
 #include "KillProcess.h"
 #include "afxdialogex.h"
@@ -101,7 +101,7 @@ void CHomeDlg::OnTimer(UINT_PTR nIDEvent)
         GetProcessInfo(csName.GetBuffer());
         break;
     case 2:
-        if (::FindWindowEx(HWND_MESSAGE, 0, _T("GamerDllControlPort"), NULL) == NULL)
+        if (::FindWindowEx(HWND_MESSAGE, 0, _T("JYhookDllControlPort"), NULL) == NULL)
             GetDlgItem(IDC_INJECT)->EnableWindow(TRUE);
         else
             GetDlgItem(IDC_INJECT)->EnableWindow(FALSE);
@@ -142,7 +142,7 @@ void CHomeDlg::OnBnClickedKill()
 
 BOOL CHomeDlg::InjectDll(HANDLE hProcess, LPCWSTR lpDllPath)
 {
-    const char* RemotePath = ".\\GamerDll\\GamerDll.dll";
+    const char* RemotePath = ".\\JYhookDll\\JYhookDll.dll";
 
     AddRecord(RECORD_DEBUG, _T("开始注入"));
     HANDLE hThread = NULL;
@@ -151,9 +151,9 @@ BOOL CHomeDlg::InjectDll(HANDLE hProcess, LPCWSTR lpDllPath)
     DWORD dwBufSize = (DWORD)(strlen(RemotePath) + 1) * sizeof(char);  // 存储DLL文件路径所需的内存空间大小  
     LPTHREAD_START_ROUTINE pThreadProc;
     
-    CreateDirectory(csPath + _T("GamerDll\\"), NULL);
+    CreateDirectory(csPath + _T("JYhookDll\\"), NULL);
 
-    CopyFile(lpDllPath, csPath + _T("GamerDll\\GamerDll.dll"), FALSE);
+    CopyFile(lpDllPath, csPath + _T("JYhookDll\\JYhookDll.dll"), FALSE);
 
     pRemoteBuf = VirtualAllocEx(hProcess, NULL, dwBufSize, MEM_COMMIT, PAGE_READWRITE);  // 在目标进程空间中申请内存  
     if (!pRemoteBuf)
@@ -209,7 +209,7 @@ BOOL CHomeDlg::HijackDll(LPCWSTR lpDllPath)
     AddRecord(RECORD_DEBUG, _T("备份原文件"));
     CopyFile(cslibTDAjustPath, csBackupPath, TRUE);
     MessageBox(cslibTDAjustPath);
-    if (!CopyFile(_T(".\\GamerDll.dll"), cslibTDAjustPath, FALSE))
+    if (!CopyFile(_T(".\\JYhookDll.dll"), cslibTDAjustPath, FALSE))
     {
         AddRecord(RECORD_DEBUG, _T("无法劫持"));
         return FALSE;
@@ -221,12 +221,12 @@ BOOL CHomeDlg::HijackDll(LPCWSTR lpDllPath)
 }
 void CHomeDlg::OnBnClickedInject()
 {
-    if (!InjectDll(hStudentMain,L".\\GamerDll.dll"))
+    if (!InjectDll(hStudentMain,L".\\JYhookDll.dll"))
     {
         AddRecord(RECORD_ERROR, _T("注入失败"));
         AfxMessageBox(_T("注入失败"));
         return;
     }
     AddRecord(RECORD_SUCCEED, _T("注入成功"));
-    CreateDirectory(csPath + _T("GamerDll\\CamouflageScreenshot"), NULL);
+    CreateDirectory(csPath + _T("JYhookDll\\CamouflageScreenshot"), NULL);
 }

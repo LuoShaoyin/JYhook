@@ -2,7 +2,7 @@
 //
 
 #include "pch.h"
-#include "Gamer.h"
+#include "JYhook.h"
 #include "RecordDlg.h"
 #include "afxdialogex.h"
 

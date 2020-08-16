@@ -1,10 +1,10 @@
 ﻿
-// GamerDlg.cpp: 实现文件
+// JYhookDlg.cpp: 实现文件
 //
 
 #include "pch.h"
-#include "Gamer.h"
-#include "GamerDlg.h"
+#include "JYhook.h"
+#include "JYhookDlg.h"
 #include "SettingDlg.h"
 #include "CAbout.h"
 
@@ -14,33 +14,33 @@
 #endif
 
 
-// CGamerDlg 对话框
+// CJYhookDlg 对话框
 
 
 
-CGamerDlg::CGamerDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_GAMER_DIALOG, pParent)
+CJYhookDlg::CJYhookDlg(CWnd* pParent /*=nullptr*/)
+	: CDialogEx(IDD_JYhook_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	ZeroMemory(m_Page, MAX_PAGE * sizeof(CDialog*));
 }
 
-void CGamerDlg::DoDataExchange(CDataExchange* pDX)
+void CJYhookDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_TAB, m_Tab);
 }
 
-BEGIN_MESSAGE_MAP(CGamerDlg, CDialogEx)
+BEGIN_MESSAGE_MAP(CJYhookDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB, &CGamerDlg::OnSelchangeTab)
+	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB, &CJYhookDlg::OnSelchangeTab)
 END_MESSAGE_MAP()
 
 
-// CGamerDlg 消息处理程序
+// CJYhookDlg 消息处理程序
 
-BOOL CGamerDlg::OnInitDialog()
+BOOL CJYhookDlg::OnInitDialog()
 {
 	if (!GetSystem())
 	{
@@ -78,7 +78,7 @@ BOOL CGamerDlg::OnInitDialog()
 //  来绘制该图标。  对于使用文档/视图模型的 MFC 应用程序，
 //  这将由框架自动完成。
 
-void CGamerDlg::OnPaint()
+void CJYhookDlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -105,14 +105,14 @@ void CGamerDlg::OnPaint()
 
 //当用户拖动最小化窗口时系统调用此函数取得光标
 //显示。
-HCURSOR CGamerDlg::OnQueryDragIcon()
+HCURSOR CJYhookDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
 
 
-BOOL CGamerDlg::PreTranslateMessage(MSG* pMsg)
+BOOL CJYhookDlg::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->wParam == VK_RETURN || pMsg->wParam == VK_ESCAPE)
 		if (pMsg->message == WM_KEYDOWN)
@@ -120,7 +120,7 @@ BOOL CGamerDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialogEx::PreTranslateMessage(pMsg);
 }
 
-void CGamerDlg::InitAllDlg(CRect rc)
+void CJYhookDlg::InitAllDlg(CRect rc)
 {
 	// TODO: 在此处添加实现代码.
 	m_Page[0] = m_HomeDlg = new CHomeDlg;
@@ -136,18 +136,18 @@ void CGamerDlg::InitAllDlg(CRect rc)
 			dialog->MoveWindow(rc);
 }
 
-void CGamerDlg::HideAllDlg()
+void CJYhookDlg::HideAllDlg()
 {
 	for (auto dialog : m_Page)
 		if(dialog)
 			dialog->ShowWindow(SW_HIDE);
 }
 
-void CGamerDlg::OnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult)
+void CJYhookDlg::OnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	// TODO: 在此添加控件通知处理程序代码
 	HideAllDlg();
-	//if (FindWindow(_T("GamerDllControlPort"), _T("GamerDllControlWindow")) == NULL && m_Tab.GetCurSel() == 1)
+	//if (FindWindow(_T("JYhookDllControlPort"), _T("JYhookDllControlWindow")) == NULL && m_Tab.GetCurSel() == 1)
 	//{
 	//	MessageBox(_T("请先完成注入！"), _T("错误"), MB_ICONERROR);
 	//	m_Tab.SetCurSel(0);
@@ -156,7 +156,7 @@ void CGamerDlg::OnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = 0;
 }
 
-BOOL CGamerDlg::GetSystem()
+BOOL CJYhookDlg::GetSystem()
 {
 	HANDLE hToken;
 	LUID sedebugnameValue;

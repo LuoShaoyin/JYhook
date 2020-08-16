@@ -190,8 +190,8 @@
     <ClInclude Include="CAbout.h" />
     <ClInclude Include="HomeDlg.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Gamer.h" />
-    <ClInclude Include="GamerDlg.h" />
+    <ClInclude Include="JYhook.h" />
+    <ClInclude Include="JYhookDlg.h" />
     <ClInclude Include="KillProcess.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RecordDlg.h" />
@@ -202,8 +202,8 @@
   <ItemGroup>
     <ClCompile Include="CAbout.cpp" />
     <ClCompile Include="HomeDlg.cpp" />
-    <ClCompile Include="Gamer.cpp" />
-    <ClCompile Include="GamerDlg.cpp" />
+    <ClCompile Include="JYhook.cpp" />
+    <ClCompile Include="JYhookDlg.cpp" />
     <ClCompile Include="KillProcess.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -215,13 +215,13 @@
     <ClCompile Include="SettingDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Gamer.rc" />
+    <ResourceCompile Include="JYhook.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\Gamer.rc2" />
+    <None Include="res\JYhook.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\Gamer.ico" />
+    <Image Include="res\JYhook.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

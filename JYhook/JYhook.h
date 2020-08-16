@@ -1,5 +1,5 @@
 ﻿
-// Gamer.h: PROJECT_NAME 应用程序的主头文件
+// JYhook.h: PROJECT_NAME 应用程序的主头文件
 //
 
 #pragma once
@@ -9,16 +9,16 @@
 #endif
 
 #include "resource.h"		// 主符号
-#include "GamerDlg.h"
+#include "JYhookDlg.h"
 
-// CGamerApp:
-// 有关此类的实现，请参阅 Gamer.cpp
+// CJYhookApp:
+// 有关此类的实现，请参阅 JYhook.cpp
 //
 
-class CGamerApp : public CWinApp
+class CJYhookApp : public CWinApp
 {
 public:
-	CGamerApp();
+	CJYhookApp();
 
 // 重写
 public:
@@ -26,8 +26,8 @@ public:
 
 // 实现
 public:
-	CGamerDlg* MainDlg;
+	CJYhookDlg* MainDlg;
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CGamerApp theApp;
+extern CJYhookApp theApp;

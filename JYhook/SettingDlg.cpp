@@ -2,7 +2,7 @@
 //
 
 #include "pch.h"
-#include "Gamer.h"
+#include "JYhook.h"
 #include "SettingDlg.h"
 #include "afxdialogex.h"
 
@@ -39,7 +39,7 @@ END_MESSAGE_MAP()
 void CSettingDlg::OnBnClickedOpencamouflagepath()
 {
     CString CamouflagePath = theApp.MainDlg->m_HomeDlg->csPath;
-    CamouflagePath += _T("GamerDll\\CamouflagScreenshot");
+    CamouflagePath += _T("JYhookDll\\CamouflagScreenshot");
     ShellExecute(theApp.MainDlg->m_hWnd, _T("explore"), CamouflagePath, NULL, NULL, NULL);
 }
 
@@ -58,7 +58,7 @@ void CSettingDlg::OnBnClickedUpdate()
     MessageBox(_T("building...."), _T("Please wait"));
     return;
     CString csINIPath = theApp.MainDlg->m_HomeDlg->csPath;
-    csINIPath += _T("GamerDll\\GamerDll.ini");
+    csINIPath += _T("JYhookDll\\JYhookDll.ini");
     if (UpdateSetting(csINIPath)) AddRecord(RECORD_SUCCEED, _T("已成功更新"));
     else AddRecord(RECORD_ERROR, _T("无法更新设置"));
 }
