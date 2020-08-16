@@ -1,0 +1,13 @@
+/.vs
+*.iobj
+*.ipdb
+*.pdb
+*.exp
+
+/JYhook/Debug
+/JYhook/Release
+/JYhook/x64
+
+/JYhookDll/Debug
+/JYhookDll/Release
+/JYhookDll/x64
