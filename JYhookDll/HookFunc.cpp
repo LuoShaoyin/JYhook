@@ -214,17 +214,10 @@ BOOL WINAPI hookSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int 
 {
 	if (bDisableFullScreen)
 	{
-		WCHAR szTitle[128];
-		GetWindowTextW(hWnd, szTitle, 128);
-		for (auto i : szMainWindowTitle)
-			if (i[0] == 0) break;
-			else if (!wcscmp(i, szTitle))
-				return TRUE;
-		if (cx == iScreenX && cy == iScreenY)
-		{
-			trueSetWindowLongW(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
-			return TRUE;
+		if (GetParent(hWnd)) {
+			return trueSetWindowPos(hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags);
 		}
+		return trueSetWindowPos(hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags | SWP_NOZORDER );
 	}
 	return trueSetWindowPos(hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags);
 }
@@ -243,14 +236,12 @@ LONG WINAPI hookSetWindowLongA(HWND hWnd, int nIndex, LONG dwNewLong)
 }
 LONG WINAPI hookSetWindowLongW(HWND hWnd, int nIndex, LONG dwNewLong)
 {
-	if (bDisableFullScreen)
+	if (bDisableFullScreen )
 	{
-		WCHAR szTitle[128];
-		GetWindowTextW(hWnd, szTitle, 128);
-		for (auto i : szMainWindowTitle)
-			if (i[0] == 0) break;
-			else if (!wcscmp(i, szTitle))
-				return GetWindowLongW(hWnd, nIndex);
+		if (GetParent(hWnd)) {
+			return trueSetWindowLongW(hWnd, nIndex, dwNewLong);
+		}
+		return trueSetWindowLongW(hWnd, nIndex, dwNewLong);
 	}
 	return trueSetWindowLongW(hWnd, nIndex, dwNewLong);
 }
@@ -268,6 +259,8 @@ BOOL WINAPI hookShowWindow(HWND hWnd, int  nCmdShow)
 		GetWindowText(hWnd, szTitle, 128);
 		if (!wcscmp(szTitle, L"BlackScreen Window"))	//很智障的名字
 			return TRUE;								//黑屏窗口不显示
+		if(!GetParent(hWnd))
+			trueSetWindowLongW(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
 	}
 	return trueShowWindow(hWnd, nCmdShow);
 }
@@ -419,7 +412,7 @@ BOOL WINAPI hookBitBlt(HDC hdc, int x, int y, int cx, int cy, HDC hdcSrc, int x1
 		x1 = y1 = 0;
 		HDC hCamouflageSrcDC;
 		hCamouflageSrcDC = CreateCompatibleDC(hdc);
-		if (time(NULL) % 2 == 0)
+		if (time(NULL) % 4 == 0)
 		{
 			srand((UINT)time(NULL));
 			dwImageIndex = rand() % MAXN_PHOTO;
